@@ -36,7 +36,7 @@ module.exports = (_, options) => {
                 server: { baseDir: ['dist'] }
             }),
             new ExtractTextPlugin("css/[name].css"),
-            new Clean(['dist']),
+            new Clean(['dist'], {verbose: true}),
             new Copy([{
                 from: './img',
                 to: 'img'
@@ -54,7 +54,7 @@ module.exports = (_, options) => {
             }),
         ],
         resolve: {
-            extensions: [".tsx", ".tsx", ".js"]
+            extensions: [".ts", ".tsx", ".js"]
         },
         module: {
             rules: [
