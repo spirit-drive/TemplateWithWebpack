@@ -22,7 +22,7 @@ module.exports = (_, options) => ({
         path: path.resolve(__dirname, 'dist'),
         publicPath: '../',
     },
-    devtool: options.mode === 'productions' && 'eval-sourcemap',
+    devtool: options.mode === 'development' && 'source-map',
     plugins: [
         new Html({
             template: 'index.pug'
@@ -51,7 +51,6 @@ module.exports = (_, options) => ({
         })
     ],
     resolve: {
-        // Add `.ts` and `.tsx` as a resolvable extension.
         extensions: [".ts", ".tsx", ".ts"]
     },
     module: {
@@ -63,6 +62,5 @@ module.exports = (_, options) => ({
             svg(),
             typescript()
         ]
-
     }
 });

@@ -4,7 +4,7 @@
   "main": "app/js/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack --watch --mode development",
+    "start": "webpack --watch --mode development",
     "build": "webpack --mode production"
   },
   "devDependencies": {
