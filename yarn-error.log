@@ -30,7 +30,7 @@ npm manifest:
   {
     "name": "webpack_3",
     "version": "1.0.0",
-    "main": "app/js/index.ts",
+    "main": "app/js/index.tsx",
     "license": "MIT",
     "scripts": {
       "dev": "webpack --watch --mode development",
