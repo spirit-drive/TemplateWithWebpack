@@ -164,7 +164,7 @@ const copyDirectory = (input, output) => {
         .then(() => myFS.exists(input)) // ... и существует папка из которой копировать, только тогда продолжаем
         .then(baseOperations.scan)
         .then(baseOperations.copy(input, output))
-        .then(() => console.log(Date.now() - time, `milliseconds have passed`))
+        .then(() => console.log('time:', Date.now() - time, 'milliseconds'))
         .catch(console.error);
 
 };
