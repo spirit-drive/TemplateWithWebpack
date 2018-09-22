@@ -1,9 +1,9 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (isDevMode) => ({
     test: /\.styl$/,
     use: ExtractTextPlugin.extract({
-        fallback: "style-loader",
+        fallback: 'style-loader',
         use: [{
             loader: 'css-loader',
             options: {sourceMap: isDevMode}

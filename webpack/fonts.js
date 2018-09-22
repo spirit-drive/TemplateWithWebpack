@@ -1,5 +1,5 @@
 module.exports = () => ({
-    test: /\.(woff2?|oet|ttf|otf)$/,
+    test: /\.(woff2?|oet|([to]tf))$/,
     use: [{
         loader: 'file-loader',
         options: {

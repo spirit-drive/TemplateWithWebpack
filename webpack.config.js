@@ -1,70 +1,52 @@
 const
-    path              = require('path'),
-    Html              = require('html-webpack-plugin'),
-    BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
-    ExtractTextPlugin = require("extract-text-webpack-plugin"),
-    Clean             = require('clean-webpack-plugin'),
-    UglifyJs          = require('uglifyjs-webpack-plugin'),
-    Copy              = require('copy-webpack-plugin'),
-    Imagemin          = require('imagemin-webpack-plugin').default,
-    pug               = require('./webpack/pug'),
-    stylus            = require('./webpack/stylus'),
+    styles            = require('./webpack/styles'),
+    scripts           = require('./webpack/scripts'),
     img               = require('./webpack/img'),
     fonts             = require('./webpack/fonts'),
-    typescript        = require('./webpack/typescript'),
-    svg               = require('./webpack/svg');
+    path              = require('path'),
+    Html              = require('html-webpack-plugin'),
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    Imagemin          = require('imagemin-webpack-plugin').default,
+    Clean             = require("clean-webpack-plugin");
 
-module.exports = (_, options) => {
+module.exports = (env, options) => {
     const isDevMode = options.mode === "development";
+    const dist = path.join(__dirname, 'dist');
+    const src = path.join(__dirname, 'src');
 
     return {
-        context: path.resolve(__dirname, 'app'),
-        entry: './tsx/index.tsx',
+        context: src,
+        entry: './index.tsx',
         output: {
+            path: dist,
             filename: 'js/[name].js',
-            path: path.resolve(__dirname, 'dist'),
-            publicPath: '../',
         },
         devtool: isDevMode && 'source-map',
-        plugins: [
-            new Html({
-                template: 'index.pug'
-            }),
-            new BrowserSyncPlugin({
-                host: 'localhost',
-                port: 3000,
-                server: { baseDir: ['dist'] }
-            }),
-            new ExtractTextPlugin("css/[name].css"),
-            new Clean(['dist'], {verbose: true}),
-            new Copy([{
-                from: './img',
-                to: 'img'
-            }], {
-                ignore: [{
-                    glob: 'svg/*'
-                }]
-            }),
-            new Imagemin({
-                test: /\.(png|gif|jpe?g|svg)$/i
-            }),
-            new UglifyJs({
-                sourceMap: true,
-                extractComments: true
-            }),
-        ],
+        devServer: {
+            overlay: true,
+            host: '192.168.1.71',
+        },
         resolve: {
             extensions: [".ts", ".tsx", ".js"]
         },
+        plugins: [
+            new Html({
+                template: 'index.html'
+            }),
+            new ExtractTextPlugin("css/[name].css"),
+            new Clean([dist]),
+            new Imagemin({
+                test: /\.(png|gif|jpe?g|svg)$/i
+            }),
+        ],
         module: {
             rules: [
-                pug(),
-                stylus(isDevMode),
+                styles(isDevMode),
+                scripts(),
                 img(),
-                fonts(),
-                svg(),
-                typescript()
+                fonts()
             ]
         },
+
     }
 };

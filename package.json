@@ -1,28 +1,19 @@
 {
-  "name": "webpack",
+  "name": "webpack-v.4",
   "version": "1.0.0",
-  "main": "app/js/index.js",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --watch --mode development",
+    "start": "webpack-dev-server --open --mode development --hot --inline",
     "build": "webpack --mode production"
   },
   "devDependencies": {
-    "@types/history": "^4.7.0",
-    "@types/react": "^16.4.7",
-    "@types/react-dom": "^16.0.6",
-    "@types/react-redux": "^6.0.6",
-    "@types/react-router-dom": "^4.3.0",
-    "@types/react-router-redux": "^5.0.15",
     "autoprefixer": "^9.1.5",
     "babel-core": "^6.26.3",
     "babel-loader": "7",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "browser-sync": "^2.24.7",
-    "browser-sync-webpack-plugin": "^2.2.2",
     "clean-webpack-plugin": "^0.1.19",
-    "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
     "css-mqpacker": "^7.0.0",
     "cssnano": "^4.1.0",
@@ -30,38 +21,19 @@
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "imagemin-webpack-plugin": "^2.3.0",
-    "img-loader": "^3.0.0",
     "path": "^0.12.7",
     "postcss-loader": "^3.0.0",
-    "pug": "^2.0.3",
-    "pug-loader": "^2.4.0",
-    "redux-devtools-extension": "^2.13.5",
     "style-loader": "^0.23.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "svg-url-loader": "^2.3.2",
-    "ts-loader": "^4.4.2",
-    "tslint": "^5.11.0",
-    "tslint-loader": "^3.6.0",
-    "tslint-react": "^3.6.0",
+    "ts-loader": "^5.1.1",
     "typescript": "^3.0.3",
-    "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.19.1",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
-    "history": "^4.7.2",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.3.1",
-    "react-router-redux": "^5.0.0-alpha.9",
-    "redux": "^4.0.0",
-    "redux-saga": "^0.16.0"
-  },
-  "browserslist": {
-    "production": [
-      "last 3 version"
-    ]
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   }
 }
