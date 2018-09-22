@@ -159,10 +159,12 @@ const baseOperations = {
 };
 
 const copyDirectory = (input, output) => {
+    const time = Date.now();
     myFS.unexists(output) // Если не существует папка с таких же названием, как у той, которую хотим создать...
         .then(() => myFS.exists(input)) // ... и существует папка из которой копировать, только тогда продолжаем
         .then(baseOperations.scan)
         .then(baseOperations.copy(input, output))
+        .then(() => console.log(Date.now() - time, `milliseconds have passed`))
         .catch(console.error);
 
 };
