@@ -31,32 +31,40 @@ const myFS = {
 
     unlink: pathFor => new Promise((resolve, reject) => {
         fs.unlink(pathFor, err => {
-            err && reject(err);
-            console.log(`файл ${pathFor} успешно удален`);
+            if (err) {
+                console.error(`ошибка удаления файла ${pathFor}`);
+                reject(err);
+            }
             resolve();
         });
     }),
 
     link: (pathFor, newPath) => new Promise((resolve, reject) => {
         fs.link(pathFor, newPath, err => {
-            err && reject(err);
-            console.log(`файл ${pathFor} успешно скопирован`);
+            if (err) {
+                console.error(`ошибка копирования файла ${pathFor}`);
+                reject(err);
+            }
             resolve();
         });
     }),
 
     rmdir: pathFor => new Promise((resolve, reject) => {
         fs.rmdir(pathFor, err => {
-            err && reject(err);
-            console.log(`директория ${pathFor} успешно удалена`);
+            if (err) {
+                console.error(`ошибка удаления директории ${pathFor}`);
+                reject(err);
+            }
             resolve();
         });
     }),
 
     mkdir: pathFor => new Promise((resolve, reject) => {
         fs.mkdir(pathFor, err => {
-            err && reject(err);
-            console.log(`директория ${pathFor} успешно создана`);
+            if (err) {
+                console.error(`ошибка создания директории ${pathFor}`);
+                reject(err);
+            }
             resolve();
         });
     }),
@@ -164,7 +172,7 @@ const copyDirectory = (input, output) => {
         .then(() => myFS.exists(input)) // ... и существует папка из которой копировать, только тогда продолжаем
         .then(baseOperations.scan)
         .then(baseOperations.copy(input, output))
-        .then(() => console.log('time:', Date.now() - time, 'milliseconds'))
+        .then(() => console.log('Проект успешно создан!\ntime:', Date.now() - time, 'milliseconds'))
         .catch(console.error);
 
 };
